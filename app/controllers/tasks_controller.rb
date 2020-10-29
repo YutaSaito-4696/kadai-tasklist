@@ -12,6 +12,15 @@ class TasksController < ApplicationController
   end
 
   def create
+    @task = Task.new(task_params)
+    
+    if @task.save
+      flash[:succes] = 'タスクが正常に追加されました'
+      redirect_to @task
+    else
+      flash[:danger] = 'タスクを追加できませんでした'
+      render :new
+    end
   end
 
   def edit
@@ -22,4 +31,12 @@ class TasksController < ApplicationController
 
   def destroy
   end
+end
+
+
+private
+
+# Storong Parameter
+def task_params
+  params.require(:message).permit(:content)
 end
