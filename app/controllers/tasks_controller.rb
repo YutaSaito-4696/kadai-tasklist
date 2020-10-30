@@ -44,7 +44,7 @@ class TasksController < ApplicationController
     @task.destroy
     
     flash[:succes] = 'タスクは正常に削除されました'
-    redirect_to tasks_urls
+    redirect_to tasks_url
   end
 end
 
